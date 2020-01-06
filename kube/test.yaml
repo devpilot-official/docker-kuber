@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: knote-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: knote-test
+  template:
+    metadata:
+      labels:
+        app: knote-test
+    spec:
+      containers:
+        - name: app
+          image: devpilot001/knote-test:1.0.0
+          ports:
+            - containerPort: 4444
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: knote-test
+spec:
+  selector:
+    app: knote-test
+  ports:
+    - port: 80
+      targetPort: 4444
+  type: LoadBalancer

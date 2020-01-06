@@ -1,9 +1,13 @@
 version: '3'
 
-services: 
+services:
+    redis-server:
+        image: 'redis'
+        
     app:
-        image: node:latest
-        volumes: 
-            - ./tt:/usr/src/app
+        build: .
         ports: 
-            - "3000:3000"
+            - "4004:4444" #the first part is the public port on docker sent from browser while the last part is the original port from code
+        restart: always
+        depends_on:
+            - 'redis-server'

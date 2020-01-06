@@ -1,12 +1,15 @@
 FROM node:10-alpine
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-RUN npm install
+COPY package.json yarn.lock ./
+
+# RUN npm install
+RUN yarn
 
 COPY . .
 
-EXPOSE 8080
+# EXPOSE 8080
 
-CMD [ "node", "index.js" ]
+CMD [ "yarn", "start" ]
