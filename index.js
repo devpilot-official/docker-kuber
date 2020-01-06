@@ -20,6 +20,10 @@ app.get("/", (req, res) => {
     })
 })
 
+app.post("/", (req, res) => {
+    res.send("This site has been visited ")
+})
+
 app.listen(port, () => {
     console.log("Server started at port: " + port)
 })
